@@ -1,30 +1,50 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 # Author: Huiyang Lu
+"""
+第2章 感知机
+二分类模型
+𝑓(𝑥)=𝑠𝑖𝑔𝑛(𝑤∗𝑥+𝑏)
+损失函数 𝐿(𝑤,𝑏)=−Σ𝑦𝑖(𝑤∗𝑥𝑖+𝑏)
 
+算法
+随即梯度下降法 Stochastic Gradient Descent
+随机抽取一个误分类点使其梯度下降。
+
+当实例点被误分类，即位于分离超平面的错误侧，则调整w, b的值，
+使分离超平面向该无分类点的一侧移动，直至误分类点被正确分类
+
+拿出iris数据集中两个分类的数据和[sepal length，sepal width]作为特征
+"""
 import pandas as pd
 import numpy as np
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_iris #导入IRIS数据集
 import matplotlib.pyplot as plt
 
 # load data
-iris = load_iris()
+iris = load_iris() #特征矩阵
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df['label'] = iris.target
+df['label'] = iris.target #iris.target为目标值
 
-#
+
+# 设置所有列标签
 df.columns = ['sepal length', 'sepal width', 'petal length', 'petal width', 'label']
-df.label.value_counts()
+print(df.label.value_counts()) #label列统计每个数字出现的次数
 
+"""
+生成一幅散点图
+"""
+# 画label为0的50个散点
 plt.scatter(df[:50]['sepal length'], df[:50]['sepal width'], label='0')
+# 画label为1的50个散点
 plt.scatter(df[50:100]['sepal length'], df[50:100]['sepal width'], label='1')
-plt.xlabel('sepal length')
-plt.ylabel('sepal width')
-plt.legend()
+plt.xlabel('sepal length') # x轴
+plt.ylabel('sepal width') # y轴
+plt.legend() # 图例
+#plt.show()
 
-
-data = np.array(df.iloc[:100, [0, 1, -1]])
-X, y = data[:,:-1], data[:,-1]
+data = np.array(df.iloc[:100, [0, 1, -1]]) #前100行，第1、2列和最后一列
+X, y = data[:,:-1], data[:,-1] # X为第1、2列，y为最后一列
 y = np.array([1 if i == 1 else -1 for i in y])
 
 
@@ -66,7 +86,7 @@ perceptron.fit(X, y)
 
 x_points = np.linspace(4, 7,10)
 y_ = -(perceptron.w[0]*x_points + perceptron.b)/perceptron.w[1]
-plt.plot(x_points, y_)
+plt.plot(x_points, y_) #生成一条直线
 
 plt.plot(data[:50, 0], data[:50, 1], 'bo', color='blue', label='0')
 plt.plot(data[50:100, 0], data[50:100, 1], 'bo', color='orange', label='1')
