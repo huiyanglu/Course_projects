@@ -85,7 +85,7 @@ perceptron = Model()
 perceptron.fit(X, y)
 
 x_points = np.linspace(4, 7,10)
-y_ = -(perceptron.w[0]*x_points + perceptron.b)/perceptron.w[1]
+y_ = -(perceptron.w[0]*x_points + perceptron.b)/perceptron.w[1] #计算直线
 plt.plot(x_points, y_) #生成一条直线
 
 plt.plot(data[:50, 0], data[:50, 1], 'bo', color='blue', label='0')
