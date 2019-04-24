@@ -6,7 +6,7 @@ import sys
 import csv
 import requests
 from bs4 import BeautifulSoup
-
+from house_info import house
 
 def get_city_dict():
     city_dict = {}
@@ -71,6 +71,7 @@ def run():
 
     house_info_url = city_url+district_url[1:]
     print(house_info_url)
+    house(house_info_url)
 
 if __name__ == '__main__':
     run()
