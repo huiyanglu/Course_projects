@@ -29,6 +29,8 @@ print(city_tags)
     <a title="青岛房产网" href="https://qd.lianjia.com/">青岛</a>
     ...
 """
+
+# 将每一条数据抽离，保存在csv文件中
 with open('cities.csv', 'w',encoding='utf-8') as f:
     for city_tag in city_tags:
         city_url = city_tag.get('href')
