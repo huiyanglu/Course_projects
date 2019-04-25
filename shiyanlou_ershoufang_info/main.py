@@ -54,7 +54,9 @@ def run():
         print('Error!')
         sys.exit()
 
-    ershoufang_city_url = city_url + 'ershoufang'
+    #ershoufang_city_url = city_url + 'ershoufang'
+    ershoufang_city_url = city_url
+
     district_dict = get_district_dict(ershoufang_city_url)
     for district_name in district_dict.keys():
         print(district_name,end=' ') #如何不换行
@@ -69,7 +71,9 @@ def run():
         print('Error!')
         sys.exit()
 
-    house_info_url = city_url+district_url[1:]
+    #house_info_url = city_url+district_url[1:]
+    house_info_url = city_url + district_url[12:]
+
     print(house_info_url)
     house(house_info_url)
 

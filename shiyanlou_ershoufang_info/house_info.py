@@ -61,8 +61,9 @@ def house(url):
                 size = house_info.get("size")
                 block = house_info.get("block")
                 house_type = house_info.get("house_type")
-                line = u'{0} {1} {2} {3} {4}\n'.format(title,int(price),int(size),block,house_type)
+                line = u'{0}|{1}|{2}|{3}|{4}\n'.format(title,int(price),int(size),block,house_type)
                 f.write(line)
-                print(block,price,size)
+                #print(block,price,size)
+                print(house_info)
 
 #print(house('https://sh.lianjia.com/ershoufang/xuhui/'))
